@@ -163,7 +163,7 @@ export default function Shader()
             vUv.x -= m.x * 0.5 - 0.5;
             vUv.y -= m.y * 0.5 - 0.5;
 
-            vUv *= 2.;
+            vUv *= 7.;
             vec3 color = vec3(0.);
             
 
@@ -248,7 +248,7 @@ export default function Shader()
 
     return <>
         <mesh dispose={null} ref={shaderRef} material={material} position={[0, 0, 1]}>
-            <planeGeometry args={[10, 10]} />
+            <planeGeometry args={[30, 30]} />
         </mesh>
     </>
 }
