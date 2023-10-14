@@ -221,14 +221,17 @@ export default function Shader()
                 
             }
 
-            gl_FragColor = vec4(color, .5);
+            gl_FragColor = vec4(color, 0.1);
         }
         `,
         uniforms: {
             u_time: { value: 1.0},
             u_mouse: { value: new Vector2()}
         },
-        transparent: true
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+        opacity: 0.5
     })
 
     const shaderRef = useRef()
