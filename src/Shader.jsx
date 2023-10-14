@@ -249,6 +249,15 @@ export default function Shader()
         mouseY = -(e.clientY / window.innerHeight) + 1;
     })
 
+    addEventListener('touchstart', (e) => {
+        mouseX = (e.clientX / window.innerWidth);
+        mouseY = -(e.clientY / window.innerHeight) + 1;
+    }, {passive: false})
+
+    addEventListener('touchend', (e) => {
+
+    }, {passive: false}, false)
+
     return <>
         <mesh dispose={null} ref={shaderRef} material={material} position={[0, 0, 1]}>
             <planeGeometry args={[30, 30]} />
