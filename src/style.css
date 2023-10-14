@@ -9,7 +9,7 @@ body,
     height: 100%;
     overflow: hidden;
     background-color: #000000;
-    touch-action: none;
+    /* touch-action: none; */
     cursor: none;
 }
 
