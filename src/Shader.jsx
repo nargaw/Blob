@@ -110,7 +110,12 @@ export default function Shader()
         }
 
         float GetDist(vec3 p){
+            vec2 m = vec2(u_mouse);
+            // p.x -= -m.x;
+            // p.y += -m.y;
             p += (cnoise(p) * 0.1) * (sin(u_time) / 10. + 1.);
+            // p.x = m.x * 0.5;
+            // p.y = -m.y * 0.5;
             
             float sphere = sdSphere(p, 1.75);
 
@@ -152,14 +157,19 @@ export default function Shader()
 
         void main()
         {
-            vec2 vUv = vec2(vUv.x, vUv.y);
-            vUv -= 0.5;
-            vec3 color = vec3(0.);
             vec2 m = u_mouse.xy;
+            vec2 vUv = vec2(vUv.x, vUv.y);
+            vUv -= 0.75;
+            vUv.x -= m.x * 0.5 - 0.5;
+            vUv.y -= m.y * 0.5 - 0.5;
+
+            vUv *= 2.;
+            vec3 color = vec3(0.);
+            
 
             vec3 ro = vec3 (0., 3., -4) * .9;
             ro.yx *= Rot(PI * 0.5);
-            ro.xz *= Rot(-m.x*TWO_PI);
+            ro.xz *= Rot(u_time);
 
             vec3 rd = GetRayDir(vUv, ro, vec3(0.), 1.);
             rd.y *= -1.;
