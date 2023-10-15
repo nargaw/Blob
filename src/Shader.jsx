@@ -240,33 +240,25 @@ export default function Shader()
     useFrame(({clock}) => {
         shaderRef.current.material.uniforms.u_time.value = clock.elapsedTime
         shaderRef.current.material.uniforms.u_mouse.value = new Vector2(mouseX, mouseY)
-        // console.log(clock.elapsedTime)
     })
 
     addEventListener('mousemove', (e) => {
         mouseX = (e.clientX / window.innerWidth);
-        console.log(mouseX)
         mouseY = -(e.clientY / window.innerHeight) + 1;
     })
 
-
-
-    const touchmap = {}
-    const ongoingTouches = []
-    const tpCache = new Array()
-    const logEvents = false
+    
 
     addEventListener('contextmenu', e => e.preventDefault())
 
     addEventListener('touchmove', (e) => {
-        // console.log(e.changedTouches[0].clientX / window.innerWidth)
         mouseX = (e.changedTouches[0].clientX / window.innerWidth);
         mouseY = -(e.changedTouches[0].clientY / window.innerHeight) + 1;
     }, {passive: false})
 
-    // addEventListener('touchend', (e) => {
+    addEventListener('touchend', (e) => {
 
-    // }, {passive: false}, false)
+    }, {passive: false}, false)
 
     return <>
         <mesh dispose={null} ref={shaderRef} material={material} position={[0, 0, 1]}>
