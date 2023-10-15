@@ -245,6 +245,7 @@ export default function Shader()
 
     addEventListener('mousemove', (e) => {
         mouseX = (e.clientX / window.innerWidth);
+        console.log(mouseX)
         mouseY = -(e.clientY / window.innerHeight) + 1;
     })
 
@@ -257,10 +258,10 @@ export default function Shader()
 
     addEventListener('contextmenu', e => e.preventDefault())
 
-    addEventListener('touchstart', (e) => {
-        console.log(e)
-        mouseX = (e.clientX / window.innerWidth);
-        mouseY = -(e.clientY / window.innerHeight) + 1;
+    addEventListener('touchmove', (e) => {
+        // console.log(e.changedTouches[0].clientX / window.innerWidth)
+        mouseX = (e.changedTouches[0].clientX / window.innerWidth);
+        mouseY = -(e.changedTouches[0].clientY / window.innerHeight) + 1;
     }, {passive: false})
 
     // addEventListener('touchend', (e) => {
