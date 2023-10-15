@@ -162,8 +162,7 @@ export default function Shader()
             vUv -= 0.75;
             vUv.x -= m.x * 0.5 - 0.5;
             vUv.y -= m.y * 0.5 - 0.5;
-
-            vUv *= 7.;
+            vUv *= 5.;
             vec3 color = vec3(0.);
             
 
@@ -221,7 +220,7 @@ export default function Shader()
                 
             }
 
-            gl_FragColor = vec4(color, 0.1);
+            gl_FragColor = vec4(color, 0.5);
         }
         `,
         uniforms: {
@@ -249,14 +248,24 @@ export default function Shader()
         mouseY = -(e.clientY / window.innerHeight) + 1;
     })
 
+
+
+    const touchmap = {}
+    const ongoingTouches = []
+    const tpCache = new Array()
+    const logEvents = false
+
+    addEventListener('contextmenu', e => e.preventDefault())
+
     addEventListener('touchstart', (e) => {
+        console.log(e)
         mouseX = (e.clientX / window.innerWidth);
         mouseY = -(e.clientY / window.innerHeight) + 1;
     }, {passive: false})
 
-    addEventListener('touchend', (e) => {
+    // addEventListener('touchend', (e) => {
 
-    }, {passive: false}, false)
+    // }, {passive: false}, false)
 
     return <>
         <mesh dispose={null} ref={shaderRef} material={material} position={[0, 0, 1]}>
