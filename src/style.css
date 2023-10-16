@@ -10,7 +10,7 @@ body,
     overflow: hidden;
     background-color: #000000;
     /* touch-action: none; */
-    cursor: none;
+    /* cursor: none; */
 }
 
 ::-webkit-scrollbar {

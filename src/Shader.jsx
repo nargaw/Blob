@@ -162,7 +162,7 @@ export default function Shader()
             vUv -= 0.75;
             vUv.x -= m.x * 0.5 - 0.5;
             vUv.y -= m.y * 0.5 - 0.5;
-            vUv *= 5.;
+            vUv *= 7.;
             vec3 color = vec3(0.);
             
 
@@ -220,7 +220,7 @@ export default function Shader()
                 
             }
 
-            gl_FragColor = vec4(color, 0.5);
+            gl_FragColor = vec4(col, 0.5);
         }
         `,
         uniforms: {
@@ -230,7 +230,7 @@ export default function Shader()
         transparent: true,
         depthTest: false,
         depthWrite: false,
-        opacity: 0.5
+        opacity: 0.15
     })
 
     const shaderRef = useRef()
@@ -262,7 +262,7 @@ export default function Shader()
 
     return <>
         <mesh dispose={null} ref={shaderRef} material={material} position={[0, 0, 1]}>
-            <planeGeometry args={[30, 30]} />
+            <planeGeometry args={[25, 25]} />
         </mesh>
     </>
 }
