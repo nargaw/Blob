@@ -1,6 +1,7 @@
 import { Vector2, ShaderMaterial } from 'three'
 import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { lerp } from 'three/src/math/MathUtils'
 
 export default function Shader()
 {
@@ -234,17 +235,23 @@ export default function Shader()
     })
 
     const shaderRef = useRef()
-    let mouseX
-    let mouseY
+    let mouseX = 0
+    let mouseY = 0
+    let newMouseX = 0
+    let newMouseY = 0
 
     useFrame(({clock}) => {
+        // console.log('mouse x:' + mouseX)
+        // console.log('newMouseX:' + newMouseX)
+        // lerp(newMouseX, mouseX, 0.01)
+        // lerp(newMouseY,  mouseY, 0.01)
         shaderRef.current.material.uniforms.u_time.value = clock.elapsedTime
         shaderRef.current.material.uniforms.u_mouse.value = new Vector2(mouseX, mouseY)
     })
 
     addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX / window.innerWidth);
-        mouseY = -(e.clientY / window.innerHeight) + 1;
+        mouseX = lerp( mouseX, (e.clientX / window.innerWidth), 0.05);
+        mouseY = lerp(mouseY, (-(e.clientY / window.innerHeight) + 1), 0.05);
     })
 
     
